@@ -61,7 +61,8 @@ export class TextProcessor {
 
     schedule.Schedule.forEach((lesson, index) => {
       const current = TimeRelativeProcessor.isNow(lesson, schedule.Schedule[index - 1]);
-      result += `📌 ${lesson.lessonNumber} пара ${current ? '(Сейчас)' : ''} (${this.timeCompiler(
+      const dot = lesson.subjectName.indexOf('вероятностей') > -1 ? '☠️' : '📌'
+      result += `${dot} ${lesson.lessonNumber} пара ${current ? '(Сейчас)' : ''} (${this.timeCompiler(
         lesson.start,
       )} - ${this.timeCompiler(lesson.end)})
 📕 ${this.typeCompiler(lesson.lessonType)}: ${lesson.subjectName}
